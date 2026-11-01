@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+@theme {
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-base: #090d16;
+  --color-panel: #111827;
+  --color-panel-2: #0f1523;
+  --color-hairline: #1f2937;
+  --color-indigo-glow: #6366f1;
+  --color-emerald-glow: #10b981;
+  --color-rose-glow: #f43f5e;
+}
+
+@layer base {
+  * {
+    border-color: #1f2937;
+  }
+
+  html {
+    color-scheme: dark;
+    scrollbar-color: #293348 transparent;
+  }
+
+  body {
+    background-color: #090d16;
+    color: #e2e8f0;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(900px 500px at 12% -8%, rgba(99, 102, 241, 0.16), transparent 60%),
+      radial-gradient(760px 460px at 92% 4%, rgba(16, 185, 129, 0.09), transparent 62%),
+      radial-gradient(700px 500px at 50% 110%, rgba(244, 63, 94, 0.07), transparent 60%);
+    background-attachment: fixed;
+  }
+
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #26304a;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a4664;
+    background-clip: content-box;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 999px;
+    background: linear-gradient(
+      to right,
+      #6366f1 0%,
+      #6366f1 var(--range-progress, 50%),
+      #1e293b var(--range-progress, 50%),
+      #1e293b 100%
+    );
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 16px;
+    width: 16px;
+    margin-top: -5px;
+    border-radius: 999px;
+    background: #eef2ff;
+    border: 3px solid #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
+    transition: transform 0.12s ease;
+  }
+  input[type="range"]:active::-webkit-slider-thumb {
+    transform: scale(1.15);
+  }
+  input[type="range"]::-moz-range-track {
+    height: 6px;
+    border-radius: 999px;
+    background: #1e293b;
+  }
+  input[type="range"]::-moz-range-progress {
+    height: 6px;
+    border-radius: 999px;
+    background: #6366f1;
+  }
+  input[type="range"]::-moz-range-thumb {
+    height: 14px;
+    width: 14px;
+    border-radius: 999px;
+    background: #eef2ff;
+    border: 3px solid #6366f1;
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility grid-noise {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+@keyframes rp-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes rp-pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+@keyframes rp-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes rp-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes rp-drip {
+  0% {
+    transform: translateY(-6px);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(18px);
+    opacity: 0;
+  }
+}
+@keyframes rp-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(320%);
+  }
+}
+
+.animate-fade-up {
+  animation: rp-fade-up 0.28s ease-out both;
+}
+.animate-fade {
+  animation: rp-fade 0.2s ease-out both;
+}
+.animate-slide-in {
+  animation: rp-slide-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.animate-pulse-ring {
+  animation: rp-pulse-ring 2s infinite;
+}
+.animate-drip {
+  animation: rp-drip 1.1s linear infinite;
+}
+.animate-sweep {
+  animation: rp-sweep 2.4s linear infinite;
+}
+
+.text-glow-indigo {
+  text-shadow: 0 0 18px rgba(99, 102, 241, 0.55);
+}
+.shadow-glow-indigo {
+  box-shadow:
+    0 0 0 1px rgba(99, 102, 241, 0.35),
+    0 8px 30px -8px rgba(99, 102, 241, 0.55);
+}
